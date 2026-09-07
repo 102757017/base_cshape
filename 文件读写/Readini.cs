@@ -1,55 +1,49 @@
 ﻿#!/usr/bin/env dotnet-script
-#r "nuget: Microsoft.Extensions.Configuration, 8.0.0"
-#r "nuget: Microsoft.Extensions.Configuration.Ini, 8.0.0"
-#r "nuget: Microsoft.Extensions.Configuration.Binder, 8.0.0"
+#r "nuget: ini-parser-netstandard, 2.5.3"
 
 using System;
 using System.IO;
-using Microsoft.Extensions.Configuration;
+using IniParser;
+using IniParser.Model;
 
-// 设置工作目录为脚本所在目录
+// 设置工作目录
 Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
 string configFile = "seting.ini";
 
-// 读取配置
-var configuration = new ConfigurationBuilder()
-    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-    .AddIniFile(configFile, optional: false, reloadOnChange: true)
-    .Build();
+// 1. 创建一个解析器实例
+var parser = new FileIniDataParser();
 
-// 获取配置值（键名会自动转为小写）
-string level = configuration["logging:level"];
-string host = configuration["mysql:host"];
-string port = configuration["mysql:port"];
+// 2. 读取或创建配置
+IniData data; //声明一个层级化的数据容器
+if (File.Exists(configFile))
+{
+    // 读取文件
+    data = parser.ReadFile(configFile);
+}
+else
+{
+    // 创建一个空的配置数据
+    data = new IniData();
+    // 写入示例
+    data["logging"]["level"] = "20";
+    data["mysql"]["host"] = "127.0.0.1";
+    data["mysql"]["port"] = "80";
+    // 保存新文件
+    parser.WriteFile(configFile, data);
+    Console.WriteLine($"✅ 已创建配置文件: {configFile}");
+}
+
+// 3. 读取配置（无需强制类型转换，直接就是 string）
+string level = data["logging"]["level"];
+string host = data["mysql"]["host"];
+string port = data["mysql"]["port"];
 
 Console.WriteLine($"获取指定的section下的option: {port} (类型: {port.GetType()})");
 Console.WriteLine($"Level: {level}");
 Console.WriteLine($"Host: {host}");
 
-// 使用强类型绑定（可选）
-// 定义配置类
-public class MySqlConfig
-{
-    public string Host { get; set; }
-    public string Port { get; set; }
-}
-
-var mysqlConfig = configuration.GetSection("mysql").Get<MySqlConfig>();
-if (mysqlConfig != null)
-{
-    Console.WriteLine($"\n强类型绑定:");
-    Console.WriteLine($"Host: {mysqlConfig.Host}");
-    Console.WriteLine($"Port: {mysqlConfig.Port}");
-}
-
-// 获取所有配置（展示）
-Console.WriteLine("\n所有配置:");
-foreach (var section in configuration.GetChildren())
-{
-    Console.WriteLine($"[{section.Key}]");
-    foreach (var child in section.GetChildren())
-    {
-        Console.WriteLine($"  {child.Key} = {child.Value}");
-    }
-}
+// 4. 修改并保存配置
+data["mysql"]["port"] = "3306"; // 修改值
+data["mysql"]["new_key"] = "新值"; // 新增键
+parser.WriteFile(configFile, data); // 保存回文件
+Console.WriteLine("✅ 配置已更新并保存。");
