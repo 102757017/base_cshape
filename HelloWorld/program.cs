@@ -11,7 +11,7 @@ class Program
         var mainModule = System.Diagnostics.Process.GetCurrentProcess().MainModule;
         Console.WriteLine($"当前运行的程序：{mainModule.FileName}");
         
-        // 打印当前程序集路径
+        // 打印当前程序集路径（包含文件名）
         var assemblyPath = typeof(Program).Assembly.Location;
         Console.WriteLine($"当前程序集路径：{assemblyPath}");
         
