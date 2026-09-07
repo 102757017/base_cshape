@@ -1,2 +1,2 @@
-dotnet run replace.cs
+dotnet run set.cs
 pause
