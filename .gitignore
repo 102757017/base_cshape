@@ -1,0 +1,69 @@
+# ============================================================
+# 核心原则：只提交源代码和项目定义文件，
+# 不提交编译产物、临时文件和个人配置。
+# ============================================================
+
+# ---------- Visual Studio 用户/个人配置文件 ----------
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.ide
+*.DotSettings.user
+*.csproj.user
+
+# ---------- IDE 缓存与目录 ----------
+.vs/
+.idea/
+
+# ---------- 编译产物（bin / obj） ----------
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]uild/
+.exe
+
+# ---------- ClickOnce / 发布输出 ----------
+publish/
+[Aa]pp[Pp]ackages/
+*.publishsettings
+*.pubxml
+*.azurePubxml
+
+# ---------- NuGet 包（由 Package Restore 还原，不提交） ----------
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+*.snupkg
+
+# ---------- 测试与代码覆盖率结果 ----------
+[Tt]est[Rr]esults/
+*.coverage
+*.coveragexml
+_NCrunch_*
+_ReSharper*/
+*.dotCover
+
+# ---------- 临时 / 系统文件 ----------
+*.tmp
+*~
+~$*
+*.log
+Thumbs.db
+Desktop.ini
+[Dd]ockForm/Logs/
+**/[Ll]og*/
+
+# ---------- 生成的中间文件 ----------
+*.userprefs
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.cache
