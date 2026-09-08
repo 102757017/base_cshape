@@ -1,0 +1,2 @@
+dotnet run ≤∂ªÒ“Ï≥£.cs
+pause

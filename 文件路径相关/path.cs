@@ -4,15 +4,18 @@ using System;
 using System.IO;
 using System.Linq;
 
-// 设置工作目录
+//Path 类处理路径的格式和字符串表示，不涉及实际文件系统。
+//Directory 类对实际的文件系统进行操作（创建、删除、移动、遍历目录）
+
+// 默认目录为当前bat路径，切换工作目录为exe所在目录
 Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 var root = Environment.CurrentDirectory;
 
-// 1. 路径分隔符
-Console.WriteLine($"分隔符: {Path.DirectorySeparatorChar}");
-
-// 2. 当前程序目录
+// 1. 当前程序目录
 Console.WriteLine($"程序目录: {root}");
+
+// 2. 路径分隔符
+Console.WriteLine($"分隔符: {Path.DirectorySeparatorChar}");
 
 // 3. 上级目录
 var parent = Directory.GetParent(root)?.FullName;  //当对象不为 null 时才访问其成员，否则直接返回 null，而不会抛出异常
@@ -24,9 +27,6 @@ Console.WriteLine($"构造路径: {constructed}");
 
 // 5. 当前工作目录
 Console.WriteLine($"工作目录: {Environment.CurrentDirectory}");
-
-// 6. 切换工作目录（重置）
-Environment.CurrentDirectory = root;
 
 // 7. 删除 temp（如果存在）并重新创建
 var temp = Path.Combine(root, "temp");
