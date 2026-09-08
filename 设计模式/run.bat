@@ -1,2 +1,2 @@
-dotnet run Observer.cs
+dotnet run event.cs
 pause
