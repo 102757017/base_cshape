@@ -1,5 +1,4 @@
 ﻿#!/usr/bin/env dotnet-script
-
 using System;
 using System.IO;
 using System.Linq;
@@ -8,6 +7,7 @@ using System.Linq;
 //Directory 类对实际的文件系统进行操作（创建、删除、移动、遍历目录）
 
 // 默认目录为当前bat路径，切换工作目录为exe所在目录
+//Application.StartupPath   WinForms应用程序启动的目录,依赖System.Windows.Forms
 Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 var root = Environment.CurrentDirectory;
 
