@@ -1,2 +1,2 @@
-dotnet run 运算符语法糖.cs
+dotnet run 特性.cs
 pause

@@ -4,15 +4,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 
 // 启用 BinaryFormatter 只能在 .NET 5之前的版本中使用，在此后的版本废弃了。
-
 // 顶级语句必须放在任何类定义之前
-var original = new Person
-{
-    Name = "张三",
-    Age = 28,
-    Email = "zhangsan@example.com",
-    TempData = "运行时临时数据"
-};
+
+
+
+
+//一般序列化
+var original = new Person{Name = "张三",Age = 28,Email = "zhangsan@example.com",TempData = "运行时临时数据"};
 Console.WriteLine("=== 原始对象 ===");
 Console.WriteLine(original);
 
@@ -32,6 +30,7 @@ using (var stream = new FileStream(filePath, FileMode.Open))
 }
 
 
+//自定义序列化
 var p = new CustomPerson { Name = "张三", Age = 28, Secret = "MyPassword123" };
 using (var ms = new MemoryStream())
 {
@@ -40,22 +39,8 @@ using (var ms = new MemoryStream())
     var p2 = (CustomPerson)formatter.Deserialize(ms);
     Console.WriteLine($"\n自定义反序列化后的对象：{p2}");
 }
-
-
-
 Console.WriteLine("\n按任意键退出...");
 Console.ReadKey();
-
-
-
-
-
-
-
-
-
-
-
 
 
 

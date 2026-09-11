@@ -1,5 +1,4 @@
-﻿#!/usr/bin/env dotnet-script
-using System;
+﻿using System;
 
 // ===== 观察者模式：主程序入口 =====
 Console.WriteLine("--- 创建网络管理器 ---");

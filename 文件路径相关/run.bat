@@ -1,2 +1,2 @@
-dotnet run path.cs
+dotnet run DllSearchPath.cs
 pause
