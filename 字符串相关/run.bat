@@ -1,2 +1,2 @@
-dotnet run set.cs
+dotnet run StringOperations.cs
 pause

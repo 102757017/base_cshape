@@ -14,11 +14,21 @@ Console.WriteLine("字符串内包含\\");
 Console.WriteLine("\n");
 
 // ===== 3. 多行字符串 =====
+
+//这种方法内容含"时要写 ""
 Console.WriteLine(@"第一行
 第二行
 第三行");
 Console.WriteLine("\n");
 
+
+//C# 11 才有的方法,""" 后面必须换行，结尾的 """ 必须单独在一行，"可以直接写
+Console.WriteLine("""
+第一行
+	第二行
+	第三行
+""");
+Console.WriteLine("\n");
 
 // ===== 4. 字符串长度 =====
 string a = "abcdef";
@@ -53,11 +63,17 @@ Console.WriteLine(b+ "\n");
 Console.WriteLine("用/连接字符串");
 string c = string.Join("/", new[] { "hello", "world", "are you" });
 Console.WriteLine(c + "\n");
+c = string.Join("/", new[] { "hello", "world", "are you" },0,2); //从索引0开始，连接连接2个元素
+Console.WriteLine(c + "\n");
 
 //分割
 string[] list1 = c.Split('/');
 foreach (string v in list1) Console.WriteLine(v + "\n");
 
+
+//D2 表示十进制至少两位，不足补零;字符串插值格式项语法是{表达式[,对齐][:格式字符串]}。[,8]表示右对齐，占8个字符宽度
+var line = $"CH{1:D3} 温度 {27,8:F2} ℃ 时间 {DateTime.Now:HH:mm:ss.fff}";
+Console.WriteLine(line);
 
 // 遍历list与索引，使用LINQ
 foreach (var (item, index) in list1.Select((item, index) => (item, index)))
