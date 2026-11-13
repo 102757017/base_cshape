@@ -1,2 +1,2 @@
-dotnet run demo.cs
+dotnet run demo2.cs
 pause

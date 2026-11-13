@@ -20,3 +20,12 @@ var result = Enumerable.Range(0, list1.Count)
 
 foreach (var r in result)
     Console.WriteLine($"{r.Item1} {r.Item2} {r.Item3} {r.Item4}");
+
+
+var a= new  List<(string Name,int Age,double score)>();
+for (int i=0;i<list1.Count;i++)
+{
+	a.Add((list1[i],list2[i],list4[i]));
+}
+var result2=a.Where(x=>x.Age>20).OrderBy(x => x.Age);
+Console.WriteLine(string.Join("",result2));         //元组的ToString方法会显示成员，List的不会

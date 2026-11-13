@@ -18,7 +18,7 @@ Console.WriteLine($"是否存在年龄大于20的对象：{result0}");
 
 var result1 = students
     .Where(s => s.Age > 20 && s.StudentName != null)        // 第1步：筛选
-    .OrderBy(s => s.Age)                                    // 第2步：排序
+    .OrderBy(s => s.Age)                                    // 第2步：排序，OrderByDescending方法是降序
     .ThenBy(s => s.StudentName)      
     .Select(s => new{s.StudentName,s.Age})                  // 第3步：投影,创建一个没有名字的临时类型对象
     .Take(10)                                               // 第4步：取前10
