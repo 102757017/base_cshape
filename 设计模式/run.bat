@@ -1,2 +1,2 @@
-dotnet run 工厂模式.cs
+dotnet run 依赖注入.cs
 pause

@@ -13,6 +13,9 @@ Student[] students = new Student[]
     new Student(005,"SunQi",24,"Male"),
 };
 
+bool result0=students.Any(s => s.Age > 20);
+Console.WriteLine($"是否存在年龄大于20的对象：{result0}");
+
 var result1 = students
     .Where(s => s.Age > 20 && s.StudentName != null)        // 第1步：筛选
     .OrderBy(s => s.Age)                                    // 第2步：排序
